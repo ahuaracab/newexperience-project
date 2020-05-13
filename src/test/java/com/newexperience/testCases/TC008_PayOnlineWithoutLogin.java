@@ -6,10 +6,12 @@ import com.newexperience.pageObjects.SigninPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class TC008_PayOnlineWithoutLogin extends BaseClass{
 
     @Test
-    public void payOnlineWithoutLogin() throws InterruptedException {
+    public void payOnlineWithoutLogin() throws InterruptedException, IOException {
         HomePage hp = new HomePage(driver);
         hp.addAnPopularProductToCart();
         Thread.sleep(3000);
@@ -34,8 +36,13 @@ public class TC008_PayOnlineWithoutLogin extends BaseClass{
         op.clickBtnConfirmOrder();
         Thread.sleep(5000);
 
-        Assert.assertEquals(op.getTxtOrderComplete(),"Your order on My Store is complete.");
+        if (!(op.getTxtOrderComplete().equals("Your order on My Store is complete."))){
+            logger.info("test failed");
+            captureScreen(driver,"payOnlineWithoutLogin");
+            Assert.assertTrue(false);
+        }
 
-
+        logger.info("test passed");
+        Assert.assertTrue(true);
     }
 }

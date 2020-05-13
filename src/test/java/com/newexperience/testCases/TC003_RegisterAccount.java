@@ -7,10 +7,12 @@ import com.newexperience.pageObjects.SignupPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class TC003_RegisterAccount extends BaseClass {
 
     @Test
-    public void registerAccount() throws InterruptedException {
+    public void registerAccount() throws InterruptedException, IOException {
 
         logger.info("URL is opened");
 
@@ -18,28 +20,30 @@ public class TC003_RegisterAccount extends BaseClass {
         Thread.sleep(3000);
         hp.clickLnkSignin();
         Thread.sleep(5000);
-        if (!(driver.getCurrentUrl().equals("http://automationpractice.com/index.php?controller=authentication&back=my-account"))) {
-            logger.info("NO SE REDIRECCIONO A LA PAGINA DE SIGNIN");
+
+        if (!(driver.getCurrentUrl().equals("http://automationpractice.com/index.php?controller=authentication&back=my-account"))){
+            logger.info("test failed");
+            captureScreen(driver,"registerAccount");
             Assert.assertTrue(false);
         }
 
         SigninPage sip = new SigninPage(driver);
         Thread.sleep(3000);
-        sip.setTxtEmailCreate("ahuaracab123@mailinator.com");
+        sip.setTxtEmailCreate("ahuaracab338@mailinator.com");
         sip.clickBtnCreateAccount();
         Thread.sleep(5000);
 
-        if (!(driver.getCurrentUrl().equals("http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation"))) {
-            logger.info("NO SE REDIRECCIONO A LA PAGINA DE REGISTRO");
+        if (!(driver.getCurrentUrl().equals("http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation"))){
+            logger.info("test failed");
+            captureScreen(driver,"registerAccount");
             Assert.assertTrue(false);
         }
 
         SignupPage sup = new SignupPage(driver);
-        Thread.sleep(3000);
-        sup.clickGender("Mr");
+        Thread.sleep(5000);
         sup.setTxtCustomerFirstName("Angelo");
         sup.setTxtCustomerLastName("Huaraca");
-        sup.setTxtPassword("123465789");
+        sup.setTxtPassword("123456789");
         sup.setTxtFirstName("Angelo");
         sup.setTxtLastName("Huaraca");
         sup.setTxtAddres("Los Rosales");
@@ -54,6 +58,14 @@ public class TC003_RegisterAccount extends BaseClass {
         Thread.sleep(5000);
 
         AccountPage ap = new AccountPage(driver);
-        Assert.assertEquals(ap.getLnkAccountName(), "Angelo Huaraca");
+
+        if (!(ap.getLnkAccountName().equals("Angelo Huaraca"))){
+            logger.info("test failed");
+            captureScreen(driver,"registerAccount");
+            Assert.assertTrue(false);
+        }
+
+        logger.info("test passed");
+        Assert.assertTrue(true);
     }
 }

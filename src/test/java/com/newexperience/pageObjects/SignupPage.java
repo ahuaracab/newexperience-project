@@ -16,14 +16,6 @@ public class SignupPage {
         PageFactory.initElements(rdriver,this);
     }
 
-    @FindBy(id = "uniform-id_gender1")
-    @CacheLookup
-    WebElement rdbtnMr;
-
-    @FindBy(id = "uniform-id_gender2")
-    @CacheLookup
-    WebElement rdbtnMrs;
-
     @FindBy(id = "customer_firstname")
     @CacheLookup
     WebElement txtCustomerFirstName;
@@ -31,10 +23,6 @@ public class SignupPage {
     @FindBy(id = "customer_lastname")
     @CacheLookup
     WebElement txtCustomerLastName;
-
-    @FindBy(id = "email")
-    @CacheLookup
-    WebElement txtEmailConfirm;
 
     @FindBy(id = "passwd")
     @CacheLookup
@@ -80,23 +68,12 @@ public class SignupPage {
     @CacheLookup
     WebElement btnSubmitAccount;
 
-    public void clickGender(String gender) {
-        if (gender.equals("Mr"))
-            rdbtnMr.click();
-        else
-            rdbtnMrs.click();
-    }
-
     public void setTxtCustomerFirstName(String customerFirstName) {
         txtCustomerFirstName.sendKeys(customerFirstName);
     }
 
     public void setTxtCustomerLastName(String customerLastName) {
         txtCustomerLastName.sendKeys(customerLastName);
-    }
-
-    public String getTxtEmailConfirm() {
-        return txtEmailConfirm.getText();
     }
 
     public void setTxtPassword(String password) {
@@ -144,11 +121,4 @@ public class SignupPage {
     public void clickBtnSubmitAccount() {
         btnSubmitAccount.click();
     }
-
-
-
-
-
-
-
 }

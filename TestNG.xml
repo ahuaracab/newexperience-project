@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="NewExperience Suite">
+
+    <listeners>
+        <listener class-name="com.newexperience.utilities.Reporting" />
+    </listeners>
+
+    <test name="Fuctional Test NewExperience">
+        <classes>
+
+            <!--<class name="com.newexperience.testCases.TC001_SigninLinkValidate" />-->
+            <!-- <class name="com.newexperience.testCases.TC002_EmailValidate" />-->
+            <!--<class name="com.newexperience.testCases.TC003_RegisterAccount" />-->
+            <!--<class name="com.newexperience.testCases.TC004_Login" />-->
+<!--
+            <class name="com.newexperience.testCases.TC005_RecoveredPassword" />
+-->
+            <!--<class name="com.newexperience.testCases.TC006_ContactUs" />-->
+<!--
+            <class name="com.newexperience.testCases.TC007_AddToCartFromHomePage" />
+-->
+            <!--<class name="com.newexperience.testCases.TC008_PayOnlineWithoutLogin" />-->
+            <!--<class name="com.newexperience.testCases.TC009_PayOnlineWithLogin" />-->
+            <class name="com.newexperience.testCases.TC010_PayOnlineWithRegister" />
+        </classes>
+    </test>
+
+</suite>

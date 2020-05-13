@@ -7,9 +7,11 @@ import com.newexperience.pageObjects.SignupPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class TC010_PayOnlineWithRegister extends BaseClass{
     @Test
-    public void payOnlineWithoutLogin() throws InterruptedException {
+    public void payOnlineWithRegister() throws InterruptedException, IOException {
 
 
         HomePage hp = new HomePage(driver);
@@ -25,13 +27,12 @@ public class TC010_PayOnlineWithRegister extends BaseClass{
 
         SigninPage sip = new SigninPage(driver);
         Thread.sleep(3000);
-        sip.setTxtEmailCreate("ahuaracab12345@mailinator.com");
+        sip.setTxtEmailCreate("ahuaracab449@mailinator.com");
         sip.clickBtnCreateAccount();
         Thread.sleep(5000);
 
         SignupPage sup = new SignupPage(driver);
-        Thread.sleep(3000);
-        sup.clickGender("Mr");
+        Thread.sleep(5000);
         sup.setTxtCustomerFirstName("Angelo");
         sup.setTxtCustomerLastName("Huaraca");
         sup.setTxtPassword("123465789");
@@ -57,8 +58,13 @@ public class TC010_PayOnlineWithRegister extends BaseClass{
         op.clickBtnConfirmOrder();
         Thread.sleep(5000);
 
-        Assert.assertEquals(op.getTxtOrderComplete(),"Your order on My Store is complete.");
+        if (!(op.getTxtOrderComplete().equals("Your order on My Store is complete."))){
+            logger.info("test failed");
+            captureScreen(driver,"payOnlineWithRegister");
+            Assert.assertTrue(false);
+        }
 
-
+        logger.info("test passed");
+        Assert.assertTrue(true);
     }
 }
